@@ -9,9 +9,13 @@ async function criarVideo (evento){
     const imagem = document.querySelector('[data-imagem]').value;
     const descricao = Math.floor(Math.random() * 10).toString();
 
-    await conectaAPI.criaVideo(titulo,descricao,url,imagem);
+    try {
+        await conectaAPI.criaVideo(titulo,descricao,url,imagem);
+        window.location.href = "../pages/envio-concluido.html";
+    } catch (e) {
+        alert(e);
+    }
 
-    window.location.href = "../pages/envio-concluido.html";
 }
 
 form.addEventListener("submit", evento => criarVideo(evento));
